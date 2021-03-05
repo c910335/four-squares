@@ -35,6 +35,22 @@ $ bin/four_squares
 9485443033339641291^2 + 7911815779561688934^2 + 4104118515834236449^2 + 852605535991260783^2 = 170141183460469231731687303715884105727
 ```
 
+## Algorithm
+
+The algorithm is from [Sums of Four Squares](https://sites.math.rutgers.edu/~bumby/squares1.pdf).
+
+1. Given a prime P, define P - 1 = Q2<sup>S</sup> with Q odd; define the level of a number n to be the smallest k that satisfies n<sup>2<sup>k</sup>Q</sup> ≡ 1 (mod P).
+2. Find the first element whose level is not 1 in the following sequence.
+    - c<sub>0</sub> = P - 1
+    - c<sub>i</sub> = c<sub>i-1</sub> / 2 if c<sub>i-1</sub> is even.
+    - c<sub>i</sub> = c<sub>i-1</sub> - 1 if c<sub>i-1</sub> is odd.
+3. Let c<sub>j</sub> be the first element whose level is not 1:
+    - If the level of c<sub>j</sub> is greater than 1, then P - 1 is a [quadratic residue](https://en.wikipedia.org/wiki/Quadratic_residue) modulo P, and its square root x satisfies x<sup>2</sup> + 1 = kP for some k.
+    - If the level of c<sub>j</sub> is 0, then both c<sub>j</sub> and P - c<sub>j-1</sub> are [quadratic residues](https://en.wikipedia.org/wiki/Quadratic_residue) modulo P, and their square roots x and y satisfy x<sup>2</sup> + y<sup>2</sup> + x<sup>2</sup>(or 1 if c<sub>j-1</sub> is odd) = kP for some k.
+4. Find the square roots x, y, z that satisfy the equation x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> = kP in the previous step by the [Tonelli–Shanks algorithm](https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm).
+5. Find the gcd (a + bi + cj + dk) of the two [quaternions](https://en.wikipedia.org/wiki/Quaternion) (x + yi + zj) and P by the [Euclidean algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm).
+6. Output a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup> + d<sup>2</sup> = P.
+
 ## Contributing
 
 1. Fork it (<https://github.com/c910335/four-squares/fork>)

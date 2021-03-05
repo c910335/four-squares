@@ -4,7 +4,7 @@ class FourSquares::Roots
   @odd = BigInt.new(1)
   @level_limit = BigInt.new(0)
 
-  def initialize(num : String)
+  def initialize(num : String | Int)
     @num = BigInt.new(num)
     if @num == 2
       @roots = {1, 1, 0, 0}.map { |x| BigInt.new(x) }
@@ -12,8 +12,8 @@ class FourSquares::Roots
       a = Quaternion.new(@num)
       b = Quaternion.new(*troots)
       @roots = euclidean(a, b).try &.to_abs_tuple
-      if squares_sum != @num
-        raise "#{to_s} != #{@num}"
+      if @roots && squares_sum != @num
+        @roots = nil
       end
     end
   end

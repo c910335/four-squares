@@ -11,7 +11,7 @@ class FourSquares::Roots
     elsif @num > 2 && (troots = roots_three_squares_mod)
       a = Quaternion.new(@num)
       b = Quaternion.new(*troots)
-      @roots = euclidean(a, b).try &.to_abs_tuple
+      @roots = euclidean(a, b).try(&.to_sorted_abs_tuple)
       if @roots && squares_sum != @num
         @roots = nil
       end

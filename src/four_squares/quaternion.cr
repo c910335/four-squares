@@ -1,4 +1,5 @@
 struct FourSquares::Quaternion
+  include Comparable(self)
   property r : BigInt
   property i : BigInt
   property j : BigInt
@@ -15,12 +16,24 @@ struct FourSquares::Quaternion
     r * r + i * i + j * j + k * k
   end
 
+  def <=>(o : Quaternion)
+    abs2 <=> o.abs2
+  end
+
   def inverse
     Quaternion.new(r, -i, -j, -k)
   end
 
   def %(o : Quaternion)
-    self - (self // o) * o
+    q = self // o
+    (0...8).map do |i|
+      t = q
+      t.r += i & 1
+      t.i += (i // 2) & 1
+      t.j += (i // 4) & 1
+      t.k += (i // 7) & 1
+      self - t * o
+    end.min
   end
 
   def -(o : Quaternion)
@@ -31,10 +44,10 @@ struct FourSquares::Quaternion
     q = o.abs2
     p = self * o.inverse
     Quaternion.new(
-      (p.r / q).round.to_i,
-      (p.i / q).round.to_i,
-      (p.j / q).round.to_i,
-      (p.k / q).round.to_i
+      (p.r // q),
+      (p.i // q),
+      (p.j // q),
+      (p.k // q)
     )
   end
 
@@ -47,8 +60,8 @@ struct FourSquares::Quaternion
     )
   end
 
-  def to_abs_tuple
-    {r.abs, i.abs, j.abs, k.abs}
+  def to_sorted_abs_tuple
+    Tuple(BigInt, BigInt, BigInt, BigInt).from([r.abs, i.abs, j.abs, k.abs].sort!.reverse!)
   end
 
   def inspect(s)

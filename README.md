@@ -51,6 +51,22 @@ The algorithm is from [Sums of Four Squares](https://sites.math.rutgers.edu/~bum
 5. Find the gcd (a + bi + cj + dk) of the two [quaternions](https://en.wikipedia.org/wiki/Quaternion) (x + yi + zj) and P by the [Euclidean algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm).
 6. Output a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup> + d<sup>2</sup> = P.
 
+## Primality Test
+
+If the input number is not a prime, the algorithm fails with high probability and thus we can know that it is a composite number.  
+However, it is known that a lot of composite numbers pass this test.  
+Here are some examples.
+
+```
+51^2 + 26^2 + 0^2 + 0^2 = 3277   # 29 * 113
+63^2 + 8^2 + 0^2 + 0^2 = 4033    # 37 * 109
+49^2 + 40^2 + 28^2 + 26^2 = 5461 # 43 * 127
+65^2 + 64^2 + 0^2 + 0^2 = 8321   # 53 * 157
+171^2 + 10^2 + 0^2 + 0^2 = 29341 # 13 * 37 * 61
+210^2 + 71^2 + 0^2 + 0^2 = 49141 # 157 * 313
+255^2 + 16^2 + 0^2 + 0^2 = 65281 # 97 * 673
+```
+
 ## Contributing
 
 1. Fork it (<https://github.com/c910335/four-squares/fork>)

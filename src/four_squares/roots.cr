@@ -25,18 +25,11 @@ class FourSquares::Roots
     if t = first_new_level
       c, n, l = t
       if l < 1
-        if a = shanks(n, @num - 1, 1)
-          b = if c % 2 == 0
-                a
-              else
-                1
-              end
-          {a, b, shanks(@num - c, @num - 1, 1).not_nil!}
+        if (a = shanks(@num - c, @num - 1, 1)) && (b = shanks(n, @num - 1, 1))
+          {a, b, c % 2 == 0 ? b : 1}
         end
-      else
-        if a = shanks(@num - 1, n, l)
-          {a, 1, 0}
-        end
+      elsif a = shanks(@num - 1, n, l)
+        {a, 1, 0}
       end
     end
   end

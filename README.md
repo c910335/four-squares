@@ -48,7 +48,8 @@ The algorithm is from [Sums of Four Squares](https://sites.math.rutgers.edu/~bum
     - If the level of c<sub>j</sub> is greater than 1, then P - 1 is a [quadratic residue](https://en.wikipedia.org/wiki/Quadratic_residue) modulo P, and its square root x satisfies x<sup>2</sup> + 1 = kP for some k.
     - If the level of c<sub>j</sub> is 0, then both c<sub>j</sub> and P - c<sub>j-1</sub> are [quadratic residues](https://en.wikipedia.org/wiki/Quadratic_residue) modulo P, and their square roots x and y satisfy x<sup>2</sup> + y<sup>2</sup> + x<sup>2</sup>(or 1 if c<sub>j-1</sub> is odd) = kP for some k.
 4. Find the square roots x, y, z that satisfy the equation x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> = kP in the previous step by the [Tonelli–Shanks algorithm](https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm).
-5. Find the gcd (a + bi + cj + dk) of the two [quaternions](https://en.wikipedia.org/wiki/Quaternion) (x + yi + zj) and P by the [Euclidean algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm).
+5. Find the gcd (a + bi + cj + dk) of the two [Hurwitz integer](https://en.wikipedia.org/wiki/Hurwitz_quaternion) (x + yi + zj) and P by the [Euclidean algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm).
+    - If their gcd is not a [Lipschitz integer](https://en.wikipedia.org/wiki/Hurwitz_quaternion), left multiply it by (e<sub>1</sub> - e<sub>2</sub>i - e<sub>3</sub>j - e<sub>4</sub>k) / 2, where e<sub>1</sub> ≡ a * 2, e<sub>2</sub> ≡ b * 2, e<sub>3</sub> ≡ c * 2, e<sub>4</sub> ≡ d * 2 (mod 4), and e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>, e<sub>4</sub> ∈ {±1}.
 6. Output a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup> + d<sup>2</sup> = P.
 
 ## Primality Test

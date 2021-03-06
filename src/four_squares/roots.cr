@@ -9,9 +9,9 @@ class FourSquares::Roots
     if @num == 2
       @roots = {1, 1, 0, 0}.map { |x| BigInt.new(x) }
     elsif @num > 2 && (troots = roots_three_squares_mod)
-      a = Quaternion.new(@num)
-      b = Quaternion.new(*troots)
-      @roots = euclidean(a, b).try(&.to_sorted_abs_tuple)
+      a = Hurwitz.new(@num)
+      b = Hurwitz.new(*troots)
+      @roots = euclidean(a, b).try(&.to_lipschitz.to_sorted_abs_tuple)
     end
   end
 
@@ -34,7 +34,7 @@ class FourSquares::Roots
     end
   end
 
-  def euclidean(a : Quaternion, b : Quaternion)
+  def euclidean(a : Hurwitz, b : Hurwitz)
     while a.abs2 > @num
       a, b = b, a % b
     end

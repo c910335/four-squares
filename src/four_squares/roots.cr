@@ -12,9 +12,6 @@ class FourSquares::Roots
       a = Quaternion.new(@num)
       b = Quaternion.new(*troots)
       @roots = euclidean(a, b).try(&.to_sorted_abs_tuple)
-      if @roots && squares_sum != @num
-        @roots = nil
-      end
     end
   end
 
@@ -115,11 +112,6 @@ class FourSquares::Roots
     a = pow((n * n) % @num, k // 2)
     a = (a * n) % @num if k % 2 == 1
     a
-  end
-
-  def squares_sum
-    roots = @roots.not_nil!
-    roots.sum { |x| x * x }
   end
 
   def to_s?

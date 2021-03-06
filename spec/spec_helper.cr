@@ -25,6 +25,7 @@ module Primes
       primes.each do |p|
         break if p * i > r
         is_prime[p * i] = false
+        break if i % p == 0
       end
     end
   end

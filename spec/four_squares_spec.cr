@@ -2,10 +2,8 @@ require "./spec_helper"
 
 describe FourSquares do
   it "represents a prime as the sum of four squares" do
-    65536.times do |i|
-      if is_prime[i]
-        FourSquares::Roots.new(i).@roots.should be_truthy
-      end
+    primes.each do |p|
+      FourSquares::Roots.new(p).to_s?.should be_truthy
     end
   end
 end

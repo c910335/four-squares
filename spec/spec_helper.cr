@@ -31,10 +31,4 @@ module Primes
   end
 end
 
-def primes
-  Primes.primes
-end
-
-def is_prime
-  Primes.is_prime
-end
+delegate primes, is_prime, to: Primes

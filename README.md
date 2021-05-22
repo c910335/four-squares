@@ -1,5 +1,7 @@
 # Four Squares
 
+[![Crystal CI](https://github.com/c910335/four-squares/actions/workflows/crystal.yml/badge.svg)](https://github.com/c910335/four-squares/actions/workflows/crystal.yml)
+
 A deterministic polynomial-time algorithm for finding a representation of a prime as a sum of four squares
 
 ## Installation

@@ -8,7 +8,7 @@ targets:
   four_squares:
     main: src/four_squares.cr
 
-crystal: 0.36.1
+crystal: 1.0.0
 
 license: MIT
 
